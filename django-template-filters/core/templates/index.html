@@ -1,0 +1,102 @@
+{% extends "base.html" %}
+{% block start %}
+
+<h1>humanize</h1>
+
+<!------- load humanize -->
+{% load humanize %}
+
+<!----apnumber------one,two,three--->
+{{humanize_data.num1|apnumber}}                 <br>
+
+<!----intcomma------4,500   5,0000--->
+{{humanize_data.num2|intcomma}}                 <br>
+
+<!----intword------1.0 million   1.0 billion--->
+{{humanize_data.num3|intword}}                  <br>
+
+<!----ordinal------3rd 2nd 4th--->
+{{humanize_data.num6|ordinal}}                  <br>
+
+<br><hr>
+{% for i  in data %}
+   <!----naturalday------today yesterday--->
+    {{i.date1}}  {{i.date1|naturalday}} <br>
+
+   <!----naturaltime------ 7 minutes ago  0 second ago--->
+    {{i.date2}}  {{i.date2|naturaltime}}    <br>
+
+    {{i.date1|date:'D M Y'}}  <!----date------ Thu Nov 2023   ,  --->   <br>
+    {{i.date1|date:'d m y'}}   <!----date------ 16 11 23   ,  --->    <br>
+    {{i.date2|time:'h:i:s'}}   <!----time------ 12:56:17  ,  --->    <br>
+    {{i.date2|timesince}}   <!----timesince------ 18 minutes  ,  --->    <br>
+
+    <hr>
+{% endfor %}
+
+
+<hr>
+<h2>normal templates</h2>
+   <!----add:'4'------ 5--->
+   {{humanize_data.num1|add:'4'}} <br>
+
+   <!----addslashes------ --->
+   {{data2.num|addslashes}}      <br>
+
+     <!----capfirst------ --->
+     {{data2.num1|capfirst}}     <br>
+
+    <!----cut------ remove the l--->
+    {{data2.num1|cut:"l"}}          <br>
+    
+    <!----default------ its is empty--->
+    {{data2.num3|default:"its is empty"}}         <br>
+
+    <!----dictsort------ remove the l--->
+    {{data2.dict | dictsort:'keys'}}          <br>
+     
+    <!----divisibleby------retuen bool--->
+    {{data2.size|divisibleby:2}}          <br>
+
+    <!----filesizeformate------195.3 KB--->
+    {{data2.size|filesizeformat}}          <br>
+
+    <!----first------195.3 KB--->
+    {{data2.div|first}}          <br>
+
+    <!----join------11|2|3|4|5|6|7|8|9|0--->
+    {{data2.div|join:'|'}}          <br>
+    
+    <!----last-----0---->
+    {{data2.div|last}}          <br>
+    
+    <!----length-----10---->
+    {{data2.div|length}}          <br>
+
+    <!----linenumber-----1---->
+    {{data2.num1|linenumbers}}          <br>
+
+    <!----lower--------->
+    {{data2.num1|lower}}          <br>
+
+    <!----upper--------->
+     {{data2.num1|upper}}          <br>
+
+    <!----make_list-----['l', 'e', 'm', 'o', 'n', ' ', 'r', 'i', 'c', 'e', ' ', 'a', 'd', 'd', ' ', 's', 'l', 'a', 's', 'h']---->
+      {{data2.num1|make_list}}          <br>
+
+    <!----random--------->
+    {{data2.div|random}}          <br>
+     
+    <!----slice------[11, 2]--->
+    {{data2.div|slice:"2"}}          <br>
+
+    <!----slugify------  lemon-rice-add-slash  --->
+    {{data2.num1|slugify}}          <br>
+
+    <!----title------Lemon Rice Add Slash--->
+    {{data2.num1|title}}          <br>
+
+    <!----wordcount------4--->
+    {{data2.num1|wordcount}}          <br>
+{% endblock start %}
